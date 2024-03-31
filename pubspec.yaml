@@ -20,3 +20,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+  - family: イカモドキ
+    fonts:
+      - asset: assets/fonts/ikamodoki/ikamodoki1_0.ttf
+        weight: 400

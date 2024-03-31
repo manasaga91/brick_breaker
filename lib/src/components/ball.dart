@@ -19,7 +19,7 @@ class Ball extends CircleComponent
             radius: radius,
             anchor: Anchor.center,
             paint: Paint()
-              ..color = const Color(0xff1e6091)
+              ..color = const Color(0xff55B65C)
               ..style = PaintingStyle.fill,
             children: [CircleHitbox()]);
 

@@ -121,5 +121,5 @@ class BrickBreaker extends FlameGame
   }
 
   @override
-  Color backgroundColor() => const Color(0xfff2e8cf);
+  Color backgroundColor() => const Color(0xff323333);
 }

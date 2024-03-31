@@ -31,8 +31,9 @@ class _GameAppState extends State<GameApp> {
       theme: ThemeData(
         useMaterial3: true,
         textTheme: GoogleFonts.pressStart2pTextTheme().apply(
-          bodyColor: const Color(0xff184e77),
-          displayColor: const Color(0xff184e77),
+          fontFamily: 'イカモドキ',
+          bodyColor: const Color(0xffCD4493),
+          displayColor: const Color(0xffCD4493),
         ),
       ),
       home: Scaffold(
@@ -42,8 +43,8 @@ class _GameAppState extends State<GameApp> {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Color(0xffa9d6e5),
-                Color(0xfff2e8cf),
+                Color(0xff202121),
+                Color(0xff323333),
               ],
             ),
           ),
@@ -64,18 +65,18 @@ class _GameAppState extends State<GameApp> {
                             overlayBuilderMap: {
                               PlayState.welcome.name: (context, game) =>
                                   const OverlayScreen(
-                                    title: 'TAP TO PLAY',
-                                    subtitle: 'Use arrow keys or swipe',
+                                    title: 'タップしてプレイ',
+                                    subtitle: 'やじるしキーまたはスワイプ',
                                   ),
                               PlayState.gameOver.name: (context, game) =>
                                   const OverlayScreen(
-                                    title: 'G A M E   O V E R',
-                                    subtitle: 'Tap to Play Again',
+                                    title: 'ゲームオーバー',
+                                    subtitle: 'タップしてプレイ',
                                   ),
                               PlayState.won.name: (context, game) =>
                                   const OverlayScreen(
-                                    title: 'Y O U   W O N ! ! !',
-                                    subtitle: 'Tap to Play Again',
+                                    title: 'ノックアウト！！',
+                                    subtitle: 'タップしてプレイ',
                                   ),
                             },
                           ),
