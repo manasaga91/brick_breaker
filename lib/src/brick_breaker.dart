@@ -1,14 +1,13 @@
 import 'dart:async';
 import 'dart:math' as math;
 
+import 'package:brick_breaker/src/components/components.dart';
+import 'package:brick_breaker/src/config.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'components/components.dart';
-import 'config.dart';
 
 enum PlayState {
   welcome,
@@ -71,18 +70,24 @@ class BrickBreaker extends FlameGame
     playState = PlayState.playing;
     score.value = 0;
 
-    world.add(Ball(
+    world.add(
+      Ball(
         difficultyModifier: difficultyModifier,
         radius: ballRadius,
         position: size / 2,
         velocity: Vector2((rand.nextDouble() - 0.5) * width, height * 0.2)
             .normalized()
-          ..scale(height / 4)));
+          ..scale(height / 4),
+      ),
+    );
 
-    world.add(Bat(
+    world.add(
+      Bat(
         size: Vector2(batWidth, batHeight),
         cornerRadius: const Radius.circular(ballRadius / 2),
-        position: Vector2(width / 2, height * 0.95)));
+        position: Vector2(width / 2, height * 0.95),
+      ),
+    );
 
     world.addAll([
       // Drop the await
@@ -106,7 +111,9 @@ class BrickBreaker extends FlameGame
 
   @override // Add from here...
   KeyEventResult onKeyEvent(
-      KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
+    KeyEvent event,
+    Set<LogicalKeyboardKey> keysPressed,
+  ) {
     super.onKeyEvent(event, keysPressed);
     switch (event.logicalKey) {
       case LogicalKeyboardKey.arrowLeft:

@@ -17,7 +17,7 @@ class ScoreCard extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(12, 6, 12, 18),
           child: Text(
             'スコア $score'.toUpperCase(),
-            style: Theme.of(context).textTheme.displaySmall!,
+            style: Theme.of(context).textTheme.displaySmall,
           ),
         );
       },

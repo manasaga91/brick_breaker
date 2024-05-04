@@ -1,11 +1,10 @@
+import 'package:brick_breaker/src/brick_breaker.dart';
+import 'package:brick_breaker/src/components/ball.dart';
+import 'package:brick_breaker/src/components/bat.dart';
+import 'package:brick_breaker/src/config.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
-
-import '../brick_breaker.dart';
-import '../config.dart';
-import 'ball.dart';
-import 'bat.dart';
 
 class Brick extends RectangleComponent
     with CollisionCallbacks, HasGameReference<BrickBreaker> {
@@ -21,7 +20,9 @@ class Brick extends RectangleComponent
 
   @override
   void onCollisionStart(
-      Set<Vector2> intersectionPoints, PositionComponent other) {
+    Set<Vector2> intersectionPoints,
+    PositionComponent other,
+  ) {
     super.onCollisionStart(intersectionPoints, other);
     removeFromParent();
     game.score.value += 100;

@@ -1,12 +1,10 @@
+import 'package:brick_breaker/src/brick_breaker.dart';
+import 'package:brick_breaker/src/config.dart';
+import 'package:brick_breaker/src/widgets/overlay_screen.dart';
+import 'package:brick_breaker/src/widgets/score_card.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../brick_breaker.dart';
-import '../config.dart';
-import 'overlay_screen.dart';
-import 'score_card.dart';
 
 class GameApp extends StatefulWidget {
   const GameApp({super.key});
@@ -37,7 +35,7 @@ class _GameAppState extends State<GameApp> {
         ),
       ),
       home: Scaffold(
-        body: Container(
+        body: DecoratedBox(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,

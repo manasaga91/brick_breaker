@@ -1,10 +1,9 @@
+import 'package:brick_breaker/src/brick_breaker.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
 import 'package:flutter/material.dart';
-
-import '../brick_breaker.dart';
 
 class Bat extends PositionComponent
     with DragCallbacks, HasGameReference<BrickBreaker> {
@@ -27,11 +26,12 @@ class Bat extends PositionComponent
   void render(Canvas canvas) {
     super.render(canvas);
     canvas.drawRRect(
-        RRect.fromRectAndRadius(
-          Offset.zero & size.toSize(),
-          cornerRadius,
-        ),
-        _paint);
+      RRect.fromRectAndRadius(
+        Offset.zero & size.toSize(),
+        cornerRadius,
+      ),
+      _paint,
+    );
   }
 
   @override
