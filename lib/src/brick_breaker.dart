@@ -6,7 +6,7 @@ import 'package:brick_breaker/src/config.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as m;
 import 'package:flutter/services.dart';
 
 enum PlayState {
@@ -17,7 +17,11 @@ enum PlayState {
 }
 
 class BrickBreaker extends FlameGame
-    with HasCollisionDetection, KeyboardEvents, TapDetector {
+    with
+        HasCollisionDetection,
+        KeyboardEvents,
+        PointerMoveCallbacks,
+        TapDetector {
   BrickBreaker()
       : super(
           camera: CameraComponent.withFixedResolution(
@@ -26,7 +30,7 @@ class BrickBreaker extends FlameGame
           ),
         );
 
-  final ValueNotifier<int> score = ValueNotifier(0);
+  final m.ValueNotifier<int> score = m.ValueNotifier(0);
   final rand = math.Random();
   double get width => size.x;
   double get height => size.y;
@@ -84,7 +88,7 @@ class BrickBreaker extends FlameGame
     world.add(
       Bat(
         size: Vector2(batWidth, batHeight),
-        cornerRadius: const Radius.circular(ballRadius / 2),
+        cornerRadius: const m.Radius.circular(ballRadius / 2),
         position: Vector2(width / 2, height * 0.95),
       ),
     );
@@ -110,7 +114,7 @@ class BrickBreaker extends FlameGame
   }
 
   @override // Add from here...
-  KeyEventResult onKeyEvent(
+  m.KeyEventResult onKeyEvent(
     KeyEvent event,
     Set<LogicalKeyboardKey> keysPressed,
   ) {
@@ -124,9 +128,18 @@ class BrickBreaker extends FlameGame
       case LogicalKeyboardKey.enter:
         startGame();
     }
-    return KeyEventResult.handled;
+    return m.KeyEventResult.handled;
   }
 
   @override
   Color backgroundColor() => const Color(0xff323333);
+
+  @override
+  void onPointerMove(PointerMoveEvent event) {
+    super.onPointerMove(event);
+    if (playState != PlayState.playing) {
+      return;
+    }
+    world.children.query<Bat>().first.move(event.localPosition.x);
+  }
 }

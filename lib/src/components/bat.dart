@@ -48,4 +48,8 @@ class Bat extends PositionComponent
       ),
     );
   }
+
+  void move(double x) {
+    position.x = x.clamp(0, game.width);
+  }
 }
