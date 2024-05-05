@@ -1,6 +1,7 @@
 import 'package:brick_breaker/src/brick_breaker.dart';
 import 'package:brick_breaker/src/components/ball.dart';
 import 'package:brick_breaker/src/components/bat.dart';
+import 'package:brick_breaker/src/components/item.dart';
 import 'package:brick_breaker/src/config.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
@@ -26,6 +27,14 @@ class Brick extends RectangleComponent
     super.onCollisionStart(intersectionPoints, other);
     removeFromParent();
     game.score.value += 100;
+
+    if (game.rand.nextInt(10) == 0) {
+      game.world.add(
+        Item(
+          position: position,
+        ),
+      );
+    }
 
     if (game.world.children.query<Brick>().length == 1) {
       game.playState = PlayState.won;

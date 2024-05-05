@@ -25,11 +25,23 @@ class Ball extends CircleComponent
 
   final Vector2 velocity;
   final double difficultyModifier;
+  bool penetrable = false;
+  double penetrableTime = 0;
 
   @override
   void update(double dt) {
     super.update(dt);
     position += velocity * dt;
+    if (penetrable) {
+      penetrableTime += dt;
+      paint.color = const Color(0xfffedc0c);
+    }
+
+    if (penetrableTime > 10) {
+      penetrable = false;
+      penetrableTime = 0;
+      paint.color = const Color(0xff55B65C);
+    }
   }
 
   @override
@@ -55,11 +67,21 @@ class Ball extends CircleComponent
           ),
         );
       }
-    } else if (other is Bat) {
+      return;
+    }
+
+    if (other is Bat) {
       velocity.y = -velocity.y;
       velocity.x = velocity.x +
           (position.x - other.position.x) / other.size.x * game.width * 0.3;
-    } else if (other is Brick) {
+      return;
+    }
+
+    if (other is Brick) {
+      if (penetrable) {
+        return;
+      }
+
       if (position.y < other.position.y - other.size.y / 2) {
         velocity.y = -velocity.y;
       } else if (position.y > other.position.y + other.size.y / 2) {
