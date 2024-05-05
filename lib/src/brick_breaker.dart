@@ -31,6 +31,7 @@ class BrickBreaker extends FlameGame
         );
 
   final m.ValueNotifier<int> score = m.ValueNotifier(0);
+  double lastBrickScrollLength = brickHeight;
   final rand = math.Random();
   double get width => size.x;
   double get height => size.y;
@@ -92,19 +93,6 @@ class BrickBreaker extends FlameGame
         position: Vector2(width / 2, height * 0.95),
       ),
     );
-
-    world.addAll([
-      // Drop the await
-      for (var i = 0; i < brickColors.length; i++)
-        for (var j = 1; j <= 5; j++)
-          Brick(
-            position: Vector2(
-              (i + 0.5) * brickWidth + (i + 1) * brickGutter,
-              (j + 2.0) * brickHeight + j * brickGutter,
-            ),
-            color: brickColors[i],
-          ),
-    ]);
   }
 
   @override
@@ -141,5 +129,42 @@ class BrickBreaker extends FlameGame
       return;
     }
     world.children.query<Bat>().first.move(event.localPosition.x);
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    if (playState != PlayState.playing) {
+      return;
+    }
+
+    lastBrickScrollLength += scrollSpeed * dt;
+    if (lastBrickScrollLength < brickHeight + brickGutter) {
+      return;
+    }
+
+    lastBrickScrollLength = 0;
+
+    final count = rand.nextInt(3);
+
+    final positions = <int>[];
+    while (positions.length < count) {
+      final p = rand.nextInt(10);
+      if (!positions.contains(p)) {
+        positions.add(p);
+      }
+    }
+
+    world.addAll([
+      for (var i = 0; i < positions.length; i++)
+        Brick(
+          position: Vector2(
+            (positions[i] + 0.5) * brickWidth +
+                (positions[i] + 1) * brickGutter,
+            brickHeight / 2,
+          ),
+          color: const Color(0xfffe4470),
+        ),
+    ]);
   }
 }

@@ -23,4 +23,5 @@ const brickGutter = gameWidth * 0.015;
 final brickWidth =
     (gameWidth - (brickGutter * (brickColors.length + 1))) / brickColors.length;
 const brickHeight = gameHeight * 0.03;
-const difficultyModifier = 1.03;
+const difficultyModifier = 1.00;
+const scrollSpeed = 10.0;

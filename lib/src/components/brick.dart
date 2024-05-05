@@ -33,4 +33,10 @@ class Brick extends RectangleComponent
       game.world.removeAll(game.world.children.query<Bat>());
     }
   }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    position += Vector2(0, scrollSpeed * dt);
+  }
 }
