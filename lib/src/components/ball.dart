@@ -37,7 +37,7 @@ class Ball extends CircleComponent
       paint.color = const Color(0xfffedc0c);
     }
 
-    if (penetrableTime > 10) {
+    if (penetrableTime > 30) {
       penetrable = false;
       penetrableTime = 0;
       paint.color = const Color(0xff55B65C);

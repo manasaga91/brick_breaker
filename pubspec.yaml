@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   flame: ^1.16.0
+  flame_audio: ^2.10.1
   flutter:
     sdk: flutter
   flutter_animate: ^4.5.0
@@ -26,3 +27,6 @@ flutter:
     fonts:
       - asset: assets/fonts/ikamodoki/ikamodoki1_0.ttf
         weight: 400
+  assets:
+    - assets/audio/
+    - assets/images/

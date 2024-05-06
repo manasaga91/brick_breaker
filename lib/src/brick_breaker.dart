@@ -6,6 +6,7 @@ import 'package:brick_breaker/src/config.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart' as m;
 import 'package:flutter/services.dart';
 
@@ -61,6 +62,10 @@ class BrickBreaker extends FlameGame
     world.add(PlayArea());
 
     playState = PlayState.welcome;
+
+    FlameAudio.bgm.initialize();
+
+    await FlameAudio.bgm.play('maou_bgm_cyber45.mp3');
   }
 
   void startGame() {

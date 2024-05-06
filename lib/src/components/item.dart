@@ -5,6 +5,7 @@ import 'package:brick_breaker/src/components/components.dart';
 import 'package:brick_breaker/src/config.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
 
 class Item extends CircleComponent
     with CollisionCallbacks, HasGameReference<BrickBreaker> {
@@ -35,6 +36,7 @@ class Item extends CircleComponent
     if (other is Bat) {
       removeFromParent();
       game.world.children.query<Ball>().first.penetrable = true;
+      FlameAudio.play('item.mp3');
     }
   }
 }
