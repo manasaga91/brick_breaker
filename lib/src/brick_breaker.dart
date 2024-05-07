@@ -95,7 +95,7 @@ class BrickBreaker extends FlameGame
       Bat(
         size: Vector2(batWidth, batHeight),
         cornerRadius: const m.Radius.circular(ballRadius / 2),
-        position: Vector2(width / 2, height * 0.95),
+        position: Vector2(width / 2, height * 0.85),
       ),
     );
   }
@@ -150,7 +150,7 @@ class BrickBreaker extends FlameGame
 
     lastBrickScrollLength = 0;
 
-    final count = rand.nextInt(3);
+    final count = rand.nextInt(4) + 1;
 
     final positions = <int>[];
     while (positions.length < count) {

@@ -5,7 +5,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 
-class PlayArea extends RectangleComponent with HasGameReference<BrickBreaker> {
+class PlayArea extends SpriteComponent with HasGameReference<BrickBreaker> {
   PlayArea()
       : super(
           paint: Paint()..color = const Color(0xff323333),
@@ -13,8 +13,9 @@ class PlayArea extends RectangleComponent with HasGameReference<BrickBreaker> {
         );
 
   @override
-  FutureOr<void> onLoad() async {
+  Future<void> onLoad() async {
     super.onLoad();
+    sprite = await Sprite.load('bg.png');
     size = Vector2(game.width, game.height);
   }
 }

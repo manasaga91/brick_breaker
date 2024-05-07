@@ -1,24 +1,36 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:brick_breaker/src/brick_breaker.dart';
 import 'package:brick_breaker/src/components/components.dart';
-import 'package:brick_breaker/src/config.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/sprite.dart';
 import 'package:flame_audio/flame_audio.dart';
 
-class Item extends CircleComponent
+class Item extends SpriteAnimationComponent
     with CollisionCallbacks, HasGameReference<BrickBreaker> {
   Item({
     required super.position,
   }) : super(
-          radius: ballRadius,
           anchor: Anchor.center,
           paint: Paint()
             ..color = const Color(0xff9208e7)
             ..style = PaintingStyle.fill,
           children: [CircleHitbox()],
         );
+
+  @override
+  Future<void> onLoad() async {
+    super.onLoad();
+    final image = await game.images.load('power-up.png');
+    final spriteSheet = SpriteSheet(
+      image: image,
+      srcSize: Vector2.all(16),
+    );
+    animation = spriteSheet.createAnimation(row: 1, stepTime: 0.5);
+    size = Vector2.all(32);
+  }
 
   @override
   void update(double dt) {
