@@ -8,9 +8,19 @@ class StageSelect extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: FilledButton(
-          onPressed: () => context.push('/game'),
-          child: const Text('game'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FilledButton(
+              onPressed: () => context.push('/game'),
+              child: const Text('Brick Breaker'),
+            ),
+            const SizedBox(height: 16),
+            FilledButton(
+              onPressed: () => context.push('/isometric'),
+              child: const Text('Isometric'),
+            ),
+          ],
         ),
       ),
     );

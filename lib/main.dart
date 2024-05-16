@@ -1,3 +1,4 @@
+import 'package:brick_breaker/src/isometric_game/isometric_game_page.dart';
 import 'package:brick_breaker/src/widgets/game_app.dart';
 import 'package:brick_breaker/src/widgets/stage_select.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,10 @@ final _router = GoRouter(
     GoRoute(
       path: '/game',
       builder: (context, state) => const GameApp(),
+    ),
+    GoRoute(
+      path: '/isometric',
+      builder: (context, state) => const IsometricGamePage(),
     ),
   ],
 );
