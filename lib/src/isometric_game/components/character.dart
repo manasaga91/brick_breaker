@@ -5,6 +5,7 @@ import 'package:brick_breaker/src/isometric_game/isometric_game.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
+import 'package:gamepads/gamepads.dart';
 
 extension JoystickDirectionValue on JoystickDirection {
   int get value => switch (this) {
@@ -60,6 +61,12 @@ class Character extends SpriteAnimationComponent
     );
 
     animation = animations[JoystickDirection.down];
+
+    Gamepads.events.listen((event) {
+      print(event.key);
+      print(event.type);
+      print(event.value);
+    });
   }
 
   @override
